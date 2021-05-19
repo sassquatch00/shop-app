@@ -12,6 +12,7 @@ const UserProductsScreen = props => {
   const dispatch = useDispatch()
 
   const selectItemHandler = productId => {
+    console.log(productId)
     props.navigation.navigate('EditProduct', { productId: productId })
   }
 
@@ -24,9 +25,9 @@ const UserProductsScreen = props => {
           imageUrl={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onSelect={selectItemHandler(itemData.item.id)}
+          onSelect={selectItemHandler.bind(this, itemData.item.id)}
         >
-          <Button color={Colours.primary} title='Edit' onPress={selectItemHandler(itemData.item.id)}/>
+          <Button color={Colours.primary} title='Edit' onPress={selectItemHandler.bind(this, itemData.item.id)}/>
           <Button color={Colours.primary} title='Delete' onPress={() => {dispatch(deleteProduct(itemData.item.id))}}/>
         </ProductItem>}
     />
